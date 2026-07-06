@@ -18,6 +18,9 @@ public class DesignationController : ControllerBase
     public async Task<IActionResult> Get()
     {
 
+
+
+
         return Ok(await _context.Designations.ToListAsync());
     }
 
