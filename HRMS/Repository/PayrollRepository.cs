@@ -1,4 +1,4 @@
-﻿namespace HRMS.DTO
+﻿namespace HRMS.Repository
 {
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;

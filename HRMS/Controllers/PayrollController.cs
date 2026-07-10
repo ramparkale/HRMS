@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HRMS.DTO;
 using Microsoft.AspNetCore.Authorization;
+using HRMS.Repository;
 
 namespace HRMS.Controllers
 {

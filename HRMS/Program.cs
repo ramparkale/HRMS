@@ -31,7 +31,7 @@ builder.Services.AddDbContext<HrmsDbContext>(options =>
 
 //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
+//builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
 builder.Services.AddScoped<ILeaveRepository, LeaveRepository>();
 builder.Services.AddScoped<IPayrollRepository, PayrollRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
@@ -132,7 +132,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("AllowReactApp");
+    app.UseCors("AllowAll");
 }
 
 app.UseHttpsRedirection();

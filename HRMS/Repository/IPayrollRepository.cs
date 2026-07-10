@@ -1,4 +1,4 @@
-﻿namespace HRMS.DTO
+﻿namespace HRMS.Repository
 {
     public interface IPayrollRepository
     {

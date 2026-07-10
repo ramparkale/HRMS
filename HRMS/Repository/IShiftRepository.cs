@@ -1,17 +1,17 @@
-﻿using HRMS.Models;
+﻿//using HRMS.Models;
 
-namespace HRMS.Repository
-{
-    public interface IShiftRepository
-    {
-        Task<IEnumerable<Shift>> GetAllAsync();
+//namespace HRMS.Repository
+//{
+//    public interface IShiftRepository
+//    {
+//        Task<IEnumerable<Shift>> GetAllAsync();
 
-        Task<Shift?> GetByIdAsync(int id);
+//        Task<Shift?> GetByIdAsync(int id);
 
-        Task AddAsync(Shift shift);
+//        Task AddAsync(Shift shift);
 
-        Task UpdateAsync(Shift shift);
+//        Task UpdateAsync(Shift shift);
 
-        Task DeleteAsync(int id);
-    }
-}
+//        Task DeleteAsync(int id);
+//    }
+//}
