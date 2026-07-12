@@ -22,6 +22,7 @@ public partial class HRMSDbContext : DbContext
 
     public DbSet<Shift> Shifts { get; set; }
 
+    public DbSet<Attendance> Attendances { get; set; } 
     public DbSet<Holiday> Holidays { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
