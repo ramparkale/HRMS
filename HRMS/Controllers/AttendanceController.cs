@@ -1,6 +1,6 @@
 ﻿using HRMS.DTOs;
 using HRMS.Models;
-//using ClosedXML.Excel;
+using ClosedXML.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -104,26 +104,26 @@ namespace HRMS.Controllers
                     da.Fill(dt);
                 }
 
-            //using (var workbook = new XLWorkbook())
-            //{
-            //    // ✅ Automatically adds headers + data
-            //    var worksheet = workbook.Worksheets.Add(dt, "Report");
+            using (var workbook = new XLWorkbook())
+            {
+                // ✅ Automatically adds headers + data
+                var worksheet = workbook.Worksheets.Add(dt, "Report");
 
-            //    // Optional styling
-            //    worksheet.Columns().AdjustToContents();
-            //    //worksheet.RangeUsed().SetAutoFilter();
+                // Optional styling
+                worksheet.Columns().AdjustToContents();
+                //worksheet.RangeUsed().SetAutoFilter();
 
-            //    using (var stream = new MemoryStream())
-            //    {
-            //        workbook.SaveAs(stream);
-            //        return File(
-            //            stream.ToArray(),
-            //            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            //            "MonthlyReport.xlsx"
-            //        );
-            //    }
-            //}
-            return null;
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return File(
+                        stream.ToArray(),
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "MonthlyReport.xlsx"
+                    );
+                }
+            }
+            //return null;
         }
             // GET: api/attendance/employee/1
             [HttpGet("employee/{id}")]
