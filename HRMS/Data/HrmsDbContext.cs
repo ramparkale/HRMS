@@ -19,6 +19,10 @@ public class HrmsDbContext : DbContext
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
     public DbSet<Shift> Shifts { get; set; }
 
+    public DbSet<Permission> Permissions { get; set; }
+
+    public DbSet<RolePermission> RolePermissions { get; set; }
+
 
 
 

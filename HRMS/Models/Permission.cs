@@ -2,24 +2,26 @@
 
 namespace HRMS.Models
 {
-    public class Role
+    public class Permission
     {
         [Key]
-        public int RoleId { get; set; }
+        public int PermissionId { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string RoleName { get; set; }
+        public string PermissionCode { get; set; }
+
+        [Required]
+        [StringLength(150)]
+        public string PermissionName { get; set; }
+
+        [StringLength(100)]
+        public string ModuleName { get; set; }
 
         [StringLength(250)]
         public string Description { get; set; }
 
         public bool IsActive { get; set; } = true;
-
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        // Navigation Properties
-        public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<RolePermission> RolePermissions { get; set; }
     }

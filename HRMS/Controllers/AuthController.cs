@@ -23,31 +23,37 @@ namespace HRMS.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var passwordHash = PasswordHelper.HashPassword(dto.password);
-
             var user = await _context.Users
-                .Include(u => u.Role).FirstOrDefaultAsync(x => x.Username == dto.username && x.PasswordHash == dto.password);
-            //.FirstOrDefaultAsync(u =>
-            //    u.Username == dto.username &&
-            //    u.PasswordHash == passwordHash &&
-            //    u.IsActive);
-
-            //var user = _context.Users
-            //   .FirstOrDefault(x => x.Username == dto.Username && x.Password == dto.Password);
-
-            //if (user == null)
-            //    return Unauthorized("Invalid credentials");
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(x =>
+                    x.Username == dto.username &&
+                    x.PasswordHash == dto.password);
 
             if (user == null)
                 return Unauthorized("Invalid credentials");
 
             var token = _jwtService.GenerateToken(user);
 
-            return Ok(new
+            var permissions = await (
+                from rp in _context.RolePermissions
+                join p in _context.Permissions
+                    on rp.PermissionId equals p.PermissionId
+                where rp.RoleId == user.RoleId
+                      && rp.IsAllowed
+                      && p.IsActive
+                select p.PermissionCode
+            ).ToListAsync();
+
+            var response = new LoginResponseDto
             {
-                token,
-                role = user.Role.RoleName
-            });
+                Token = token,
+                UserId = user.UserId,
+                username = user.Username,
+                Role = user.Role.RoleName,
+                Permissions = permissions
+            };
+
+            return Ok(response);
         }
 
         [Authorize]
