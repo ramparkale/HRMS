@@ -12,8 +12,8 @@
 
         public string Status { get; set; } // Present, Absent, Half Day
 
+        public decimal? WorkingHours { get; set; }
         public decimal? TotalHours { get; set; }
-
         public Employee Employee { get; set; } 
     }
 }
