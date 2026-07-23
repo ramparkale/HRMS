@@ -7,8 +7,8 @@
         public int EmployeeId { get; set; }
         public DateTime AttendanceDate { get; set; }
 
-        public DateTime? CheckInTime { get; set; }
-        public DateTime? CheckOutTime { get; set; }
+        public DateTime? CheckIn { get; set; }
+        public DateTime? CheckOut { get; set; }
 
         public string Status { get; set; } // Present, Absent, Half Day
 

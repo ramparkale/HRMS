@@ -7,7 +7,7 @@ public class HrmsDbContext : DbContext
     public HrmsDbContext(DbContextOptions<HrmsDbContext> options)
         : base(options) { }
 
-    public DbSet<Attendance> Attendances { get; set; }
+    public DbSet<Attendance> Attendance { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Designation> Designations { get; set; }

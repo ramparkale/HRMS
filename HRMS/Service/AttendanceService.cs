@@ -27,7 +27,7 @@ namespace HRMS.Service
             {
                 EmployeeId = employeeId,
                 AttendanceDate = today,
-                CheckInTime = DateTime.Now,
+                CheckIn = DateTime.Now,
                 Status = "Present"
             };
 
@@ -47,12 +47,12 @@ namespace HRMS.Service
             if (attendance == null)
                 return "Check-in not found";
 
-            if (attendance.CheckOutTime != null)
+            if (attendance.CheckOut != null)
                 return "Already checked out";
 
-            attendance.CheckOutTime = DateTime.Now;
+            attendance.CheckOut = DateTime.Now;
 
-            var hours = (attendance.CheckOutTime - attendance.CheckInTime)?.TotalHours;
+            var hours = (attendance.CheckOut - attendance.CheckIn)?.TotalHours;
             attendance.TotalHours = (decimal?)hours;
 
             await _context.SaveChangesAsync();

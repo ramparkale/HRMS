@@ -16,10 +16,10 @@ namespace HRMS.Repository
         {
             var today = DateTime.Today;
 
-            var present = await _context.Attendances
+            var present = await _context.Attendance
                 .CountAsync(x => x.AttendanceDate == today && x.Status == "Present");
 
-            var absent = await _context.Attendances
+            var absent = await _context.Attendance
                 .CountAsync(x => x.AttendanceDate == today && x.Status == "Absent");
 
             var leave = await _context.LeaveRequests
@@ -28,22 +28,22 @@ namespace HRMS.Repository
                     x.EndDate >= today &&
                     x.Status == "Approved");
 
-            var late = await _context.Attendances
+            var late = await _context.Attendance
                 .CountAsync(x =>
-                    x.AttendanceDate == today &&
-                    x.CheckInTime.Value.TimeOfDay > new TimeSpan(9, 30, 0));
+                    x.AttendanceDate == today //&& x.CheckIn.Value.TimeOfDay > new TimeSpan(9, 30, 0)
+                    );
 
             decimal avgHours = 0;
 
-            var hours = await _context.Attendances
-                .Where(x => x.AttendanceDate == today)
-                .ToListAsync();
+            //var hours = "0"; //await _context.Attendance
+            //    //.Where(x => x.AttendanceDate == today)
+            //    //.ToListAsync();
 
-            if (hours.Any())
-            {
-                avgHours = (decimal)hours
-                    .Average(x => x.WorkingHours);
-            }
+            //if (hours.Any())
+            //{
+            //    avgHours = (decimal)hours
+            //        .Average(x => x.WorkingHours);
+            //}
 
             int totalEmployees = await _context.Employees.CountAsync();
 
