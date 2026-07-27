@@ -57,7 +57,7 @@ namespace HRMS.Controllers
                 return NotFound();
 
             department.DepartmentName = dto.DepartmentName;
-            department.IsActive = dto.IsActive;
+           // department.IsActive = dto.IsActive;
 
             await _context.SaveChangesAsync();
 

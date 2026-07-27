@@ -1,76 +1,34 @@
-﻿using HRMS.DTO;
-using HRMS.DTOs;
-using HRMS.Models;
-using HRMS.Repository;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using HRMS.Models;
+using HRMS.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Controllers
 {
-
-    
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private readonly HRMSDbContext _context;
-        private readonly IWebHostEnvironment _environment;
+        private readonly IEmployeeRepository _repository;
 
-        public EmployeeController(
-            HRMSDbContext context,
-            IWebHostEnvironment environment)
+        public EmployeeController(IEmployeeRepository repository)
         {
-            _context = context;
-            _environment = environment;
+            _repository = repository;
         }
 
-        // GET: api/employee
+        // GET api/Employee
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
-            var employees = await _context.Employees
-                //.Include(x => x.Department)
-                //.Include(x => x.Designation)
-                .Select(x => new EmployeeProfileDto
-                {
-                    EmployeeId = x.EmployeeId,
-                    EmployeeCode = x.EmployeeCode,
-                    FullName = x.FirstName + " " + x.LastName,
-                    //DepartmentName = x.Department.DepartmentName,
-                    //DesignationName = x.Designation.DesignationName,
-                    Email = x.Email,
-                    //PhoneNumber = x.PhoneNumber,
-                    //JoiningDate = x.JoiningDate,
-                    //Salary = x.Salary
-                })
-                .ToListAsync();
+            var employees = await _repository.GetAll();
 
             return Ok(employees);
         }
 
-        // GET: api/employee/5
+        // GET api/Employee/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var employee = await _context.Employees
-                //.Include(x => x.Department)
-                //.Include(x => x.Designation)
-                .Where(x => x.EmployeeId == id)
-                .Select(x => new EmployeeProfileDto
-                {
-                    EmployeeId = x.EmployeeId,
-                    EmployeeCode = x.EmployeeCode,
-                    FullName = x.FirstName + " " + x.LastName,
-                   // DepartmentName = x.Department.DepartmentName,
-                    //DesignationName = x.Designation.DesignationName,
-                    Email = x.Email,
-                   // PhoneNumber = x.PhoneNumber,
-                   // JoiningDate = x.JoiningDate,
-                   // Salary = x.Salary
-                })
-                .FirstOrDefaultAsync();
+            var employee = await _repository.GetById(id);
 
             if (employee == null)
                 return NotFound();
@@ -78,47 +36,37 @@ namespace HRMS.Controllers
             return Ok(employee);
         }
 
-        // POST: api/employee
+        // POST api/Employee
         [HttpPost]
-        public async Task<IActionResult> Create(
-            CreateEmployeeDto dto)
+        public async Task<IActionResult> Post(Employee employee)
         {
-            var employee = new Employee
-            {
-                EmployeeCode = dto.EmployeeCode,
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-               // Gender = dto.Gender,
-                //DateOfBirth = dto.DateOfBirth,
-                Email = dto.Email,
-                //PhoneNumber = dto.PhoneNumber,
-                //Address = dto.Address,
-                //JoiningDate = dto.JoiningDate,
-                //Salary = dto.Salary,
-                //DepartmentId = dto.DepartmentId,
-                DesignationId = dto.DesignationId
-            };
+            var result = await _repository.Add(employee);
 
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
-
-            return Ok(employee);
+            return Ok(result);
         }
 
-        // DELETE: api/employee/5
+        // PUT api/Employee/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Employee employee)
+        {
+            if (id != employee.EmployeeId)
+                return BadRequest();
+
+            var result = await _repository.Update(employee);
+
+            return Ok(result);
+        }
+
+        // DELETE api/Employee/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var employee = await _context.Employees
-                .FindAsync(id);
+            var deleted = await _repository.Delete(id);
 
-            if (employee == null)
+            if (!deleted)
                 return NotFound();
 
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-
-            return Ok("Employee deleted successfully");
+            return Ok();
         }
     }
 }

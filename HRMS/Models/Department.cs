@@ -9,7 +9,7 @@ public partial class Department
 
     public string DepartmentName { get; set; } = null!;
 
-    public bool? IsActive { get; set; }
+    //public bool? IsActive { get; set; }
 
     public DateTime? CreatedDate { get; set; }
 }

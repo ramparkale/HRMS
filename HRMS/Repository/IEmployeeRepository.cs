@@ -1,14 +1,17 @@
 ﻿using HRMS.Models;
 
-namespace HRMS.Repository
+namespace HRMS.Repositories
 {
     public interface IEmployeeRepository
     {
-        //object Employees { get; }
+        Task<IEnumerable<Employee>> GetAll();
 
-        Task<IEnumerable<Employee>> GetAllAsync();
-        Task<Employee> GetByIdAsync(int id);
-        Task AddAsync(Employee employee);
-    } 
+        Task<Employee?> GetById(int id);
 
+        Task<Employee> Add(Employee employee);
+
+        Task<Employee> Update(Employee employee);
+
+        Task<bool> Delete(int id);
+    }
 }

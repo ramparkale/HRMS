@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRMS.Models;
 
@@ -20,14 +21,15 @@ public partial class Employee
     public string? Phone { get; set; }
 
     public int? DepartmentId { get; set; }
+    public Department Department { get; set; }    // Navigation Property
 
     public int? DesignationId { get; set; }
-
+    public Designation Designation { get; set; }    // Navigation Property
     public DateOnly? DateOfJoining { get; set; }
 
     public int? ManagerId { get; set; }
-
-    public bool? IsActive { get; set; }
+   // [NotMapped]
+    //public bool? IsActive { get; set; }
 
     public DateTime? CreatedDate { get; set; }
 
