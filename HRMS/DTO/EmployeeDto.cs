@@ -22,7 +22,7 @@ namespace HRMS.DTOs
 
         public DateTime DateOfJoining { get; set; }
 
-        public int? ManagerId { get; set; }   // Nullable (Top-level manager)
+        public int? ManagerId { get; set; }   
 
         public bool IsActive { get; set; }
 

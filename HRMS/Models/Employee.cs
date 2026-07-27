@@ -23,7 +23,8 @@ public partial class Employee
     public string? Email { get; set; }
 
     public string? Phone { get; set; }
-    [Required(ErrorMessage = "Employee Code is required.")]
+
+    [Required(ErrorMessage = "Department Name is required.")]
     public int DepartmentId { get; set; }
     public Department Department { get; set; }    // Navigation Property
 
