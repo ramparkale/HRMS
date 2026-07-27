@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRMS.Models;
 
 public partial class Employee
 {
+    [Key]
     public int EmployeeId { get; set; }
 
     public int? UserId { get; set; }
 
-    public string EmployeeCode { get; set; } = null!;
+    [Required(ErrorMessage = "Employee Code is required.")]
+    [StringLength(20, MinimumLength = 1,ErrorMessage = "Employee Code must be between 1 and 20 characters.")]
+    public string EmployeeCode { get; set; } = string.Empty;
 
     public string? FirstName { get; set; }
 
@@ -19,8 +23,8 @@ public partial class Employee
     public string? Email { get; set; }
 
     public string? Phone { get; set; }
-
-    public int? DepartmentId { get; set; }
+    [Required(ErrorMessage = "Employee Code is required.")]
+    public int DepartmentId { get; set; }
     public Department Department { get; set; }    // Navigation Property
 
     public int? DesignationId { get; set; }

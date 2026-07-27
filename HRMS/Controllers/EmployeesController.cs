@@ -1,4 +1,5 @@
-﻿using HRMS.Models;
+﻿using HRMS.DTOs;
+using HRMS.Models;
 using HRMS.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,8 +39,30 @@ namespace HRMS.Controllers
 
         // POST api/Employee
         [HttpPost]
-        public async Task<IActionResult> Post(Employee employee)
+        //public async Task<IActionResult> Post(Employee employee)
+        //{
+        //    var result = await _repository.Add(employee);
+
+        //    return Ok(result);
+        //}
+
+        public async Task<IActionResult> Post(EmployeeDTO dto)
         {
+          
+            var employee = new Employee
+            {
+                UserId = dto.UserId,
+                EmployeeCode = dto.EmployeeCode,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Phone = dto.Phone,
+                DepartmentId = dto.DepartmentId,
+                DesignationId = dto.DesignationId,
+                DateOfJoining = DateOnly.FromDateTime(dto.DateOfJoining),
+                ManagerId = dto.ManagerId
+            };
+
             var result = await _repository.Add(employee);
 
             return Ok(result);
@@ -47,10 +70,27 @@ namespace HRMS.Controllers
 
         // PUT api/Employee/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Employee employee)
+        //[HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, EmployeeDTO dto)
         {
-            if (id != employee.EmployeeId)
+            if (id != dto.EmployeeId)
                 return BadRequest();
+
+            var employee = new Employee
+            {
+                EmployeeId = dto.EmployeeId,
+                UserId = dto.UserId,
+                EmployeeCode = dto.EmployeeCode,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Phone = dto.Phone,
+                DepartmentId = dto.DepartmentId,
+                DesignationId = dto.DesignationId,
+                DateOfJoining = DateOnly.FromDateTime(dto.DateOfJoining),
+                ManagerId = dto.ManagerId,
+                CreatedDate=dto.CreatedDate
+            };
 
             var result = await _repository.Update(employee);
 
