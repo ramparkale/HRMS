@@ -19,8 +19,8 @@ namespace HRMS.Models
         //[StringLength(100)]
         //public string FullName { get; set; }
 
-        //[StringLength(100)]
-        //public string Email { get; set; }
+        [StringLength(200)]
+        public string emailid { get; set; }
 
         public bool IsActive { get; set; } = true;
 

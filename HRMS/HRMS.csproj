@@ -10,6 +10,10 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.0" />
     <PackageReference Include="ClosedXML.Report" Version="0.2.12" />
+    <!-- Use the AspNetCore3 package which targets modern ASP.NET Core versions.
+         The older Google.Apis.Auth.AspNetCore (v1.65.0) is omitted to avoid
+         runtime type load issues with newer ASP.NET Core interfaces. -->
+    <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.75.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.22" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
