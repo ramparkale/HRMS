@@ -23,7 +23,7 @@ namespace HRMS.Models
         public string emailid { get; set; }
 
         public bool IsActive { get; set; } = true;
-
+        public int EmployeeId { get; set; }
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]

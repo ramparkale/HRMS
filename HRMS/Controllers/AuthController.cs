@@ -25,6 +25,7 @@ namespace HRMS.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
+            try { 
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(x =>
@@ -56,6 +57,11 @@ namespace HRMS.Controllers
             };
 
             return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
 
       
@@ -94,14 +100,14 @@ namespace HRMS.Controllers
                         Username = payload.Email,
                         emailid = payload.Email,
                         PasswordHash = "ABC",
-                        IsActive=true,                       
+                        EmployeeId = 0,
+                        IsActive = true,
                         RoleId = 2
                     };
 
                     _context.Users.Add(user);
                     await _context.SaveChangesAsync();
                 }
-
 
 
                 var token = _jwtService.GenerateToken(user);
