@@ -6,6 +6,7 @@ using HRMS.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace HRMS.Controllers
 {
@@ -25,7 +26,8 @@ namespace HRMS.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            try { 
+            try 
+            { 
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(x =>
@@ -139,11 +141,29 @@ namespace HRMS.Controllers
                 }
         }
 
+
         [Authorize]
-        [HttpGet("profile")]
+        [HttpGet("Profile")]
         public IActionResult Profile()
         {
-            return Ok("Authorized User");
-        }  
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _context.Users
+        //.Include(u => u.Role)  // ← Add this line
+        .FirstOrDefault(); 
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                user.UserId,
+                user.Username,
+                user.emailid,
+                user.Role,
+                user.EmployeeId 
+            });
+        }
+
     }
 }

@@ -1,4 +1,2 @@
-var settings = new GoogleJsonWebSignature.ValidationSettings
-{
-    Audience = new[] { "YOUR_ACTUAL_CLIENT_ID.apps.googleusercontent.com" }
-};
+var user = await _context.Users
+    .FirstOrDefaultAsync(x => x.UserId.ToString() == userId);
