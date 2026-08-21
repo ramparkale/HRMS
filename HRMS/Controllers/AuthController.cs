@@ -55,6 +55,7 @@ namespace HRMS.Controllers
                 UserId = user.UserId,
                 username = user.Username,
                 Role = user.Role.RoleName,
+                EmployeeId=user.EmployeeId,
                 Permissions = permissions
             };
 

@@ -10,6 +10,8 @@
 
         public string Role { get; set; }
 
+        public int EmployeeId { get; set; } 
+
         public List<string> Permissions { get; set; }
     }
 }
