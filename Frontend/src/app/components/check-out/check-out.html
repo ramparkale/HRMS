@@ -1,0 +1,35 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h4 class="mb-0">
+                Employee Check-Out
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+
+                <strong>Current Time :</strong>
+
+                {{ checkOutTime | date:'medium' }}
+
+            </p>
+
+            <button
+                class="btn btn-danger"
+                (click)="checkOut()">
+
+                Check Out
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

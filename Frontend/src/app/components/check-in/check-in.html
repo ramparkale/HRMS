@@ -1,0 +1,26 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Employee Check-In</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                <strong>Current Time :</strong>
+                {{ checkInTime | date:'medium' }}
+            </p>
+
+            <button
+                class="btn btn-success"
+                (click)="checkIn()">
+                Check In
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

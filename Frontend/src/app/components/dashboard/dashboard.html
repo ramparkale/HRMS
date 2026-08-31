@@ -1,0 +1,139 @@
+<div class="container-fluid mt-4">
+
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold">Attendance Dashboard</h2>
+            <p class="text-muted">Welcome to Attendance Management System</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 bg-success text-white">
+                <div class="card-body text-center">
+                    <h6>Present Employees</h6>
+                    <h2>{{dashboard?.presentToday}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="card-body text-center">
+                    <h6>Absent Employees</h6>
+                    <h2>{{dashboard?.absentToday}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h6>Employees On Leave</h6>
+                    <h2>{{dashboard?.onLeave}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card shadow-sm border-0 bg-info text-white">
+                <div class="card-body text-center">
+                    <h6>Late Check-In</h6>
+                    <h2>{{dashboard?.lateCheckIn}}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Second Row -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5>Attendance Percentage</h5>
+                    <h1 class="text-primary">{{dashboard?.attendancePercentage}}%</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5>Working Hours</h5>
+                    <h1 class="text-success">{{dashboard?.workingHours}} Hrs</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Summary Table -->
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Attendance Summary</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-bordered table-hover table-striped mb-0">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Metric</th>
+                                <th class="text-center">Count</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Present Employees</td>
+                                <td class="text-center">{{dashboard?.presentToday}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Absent Employees</td>
+                                <td class="text-center">{{dashboard?.absentToday}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Employees On Leave</td>
+                                <td class="text-center">{{dashboard?.onLeave}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Late Check-In</td>
+                                <td class="text-center">{{dashboard?.lateCheckIn}}
+                            </tr>
+
+                            <tr>
+                                <td>Attendance Percentage</td>
+                                <td class="text-center">{{dashboard?.attendancePercentage}}%</td>
+                            </tr>
+
+                            <tr>
+                                <td>Working Hours</td>
+                                <td class="text-center">{{dashboard?.workingHours}} Hrs</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
