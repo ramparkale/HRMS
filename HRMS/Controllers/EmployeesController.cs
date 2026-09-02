@@ -38,14 +38,7 @@ namespace HRMS.Controllers
         }
 
         // POST api/Employee
-        [HttpPost]
-        //public async Task<IActionResult> Post(Employee employee)
-        //{
-        //    var result = await _repository.Add(employee);
-
-        //    return Ok(result);
-        //}
-
+        [HttpPost]        
         public async Task<IActionResult> Post(EmployeeDTO dto)
         {
           
