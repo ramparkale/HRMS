@@ -14,7 +14,14 @@ namespace HRMS.Service
 
         public async Task<DashboardDto> GetDashboardAsync()
         {
-            return await _repository.GetDashboardAsync();
+            try
+            {
+                return await _repository.GetDashboardAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred while retrieving the dashboard data from DB: {ex.Message}", ex);
+            }
         }
     }
 }

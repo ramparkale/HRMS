@@ -17,8 +17,15 @@ namespace HRMS.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDashboard()
         {
-            var data = await _service.GetDashboardAsync();
-            return Ok(data);
+            try
+            {
+                var data = await _service.GetDashboardAsync();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred while retrieving dashboard data: {ex.Message}", ex);
+            }
         }
     }
 }
